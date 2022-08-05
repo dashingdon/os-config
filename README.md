@@ -1,1 +1,1 @@
-# openbox-config
+# os-config
