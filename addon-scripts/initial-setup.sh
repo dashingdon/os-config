@@ -19,7 +19,8 @@ colorset
 initial-setup()
 {
 
-echo running system update
+strcolor g "running system update"
+echo
 
 runupdate()
 
