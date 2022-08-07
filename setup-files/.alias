@@ -1,0 +1,123 @@
+#include in the home directory
+
+alias sudo='sudo '
+alias agsu='sudo apt -y dist-upgrade'
+alias agu='sudo apt update'
+alias agi='sudo apt install '
+alias udb='sudo updatedb'
+alias ags='sudo apt search '
+alias agr='sudo apt remove'
+alias clnlst='sudo rm -rf /var/lib/apt/lists/*'
+alias sysinfo="sudo inxi -Fxz"
+alias p='python3.7 '
+alias jup='sudo jupyter notebook --ip="127.0.0.1" --port=8888 --no-browser --allow-root'
+alias p37="sudo python3.7 -m pip install "
+alias mine="cat ~/.mine"
+
+# surfshark quick commands
+alias vup="sudo surfshark-vpn"
+alias vstat="sudo surfshark-vpn status"
+alias vdn="sudo surfshark-vpn down"
+
+alias pissh='ssh $USER@$IP'
+alias ll='ls -la'
+alias renew='sudo dhclient -r wlp3s0 && sudo dhclient wlp3s0'
+alias hgrep='history | grep '
+alias proc='ps aux | grep'
+alias logout='sudo pkill -kill -u'
+alias ips='nmap -sP 192.168.0.1-254'
+alias tcaps='bind "set completion-ignore-case on" >>~/.inputrc'
+alias reb='sudo "$BASH" -c "reboot"'
+alias ports='sudo lsof -Pan -i tcp -i udp'
+alias shd='sudo "$BASH" -c "shutdown -h now"'
+alias td='sudo ntpdate us.pool.ntp.org'
+alias ctz='sudo dpkg-reconfigure tzdata'
+alias ipadd='curl -4 ifconfig.k0nsl.org && curl -6 ifconfig.k0nsl.org'
+alias bth='sudo bluetoothd'
+alias tgain='mp3gain -r -c -o -q -d 9.0 *.mp3'
+alias again='mp3gain -a -c -o -q -d 9.0 *.mp3' 
+alias flushdns='sudo systemd-resolve --flush-caches'
+alias trace="sudo traceroute -I "
+alias jpt='jupyter notebook --ip=127.0.0.1 --port=8888'
+alias installed='sudo apt list --installed'
+alias gitkey=`ssh-add ~/.ssh/id_rsa_github`
+alias lserver='python -m SimpleHTTPServer 8081'
+
+#use apt-file to search the missing package 
+alias afs="sudo apt-file search "
+
+#---------------------------------------------------------------------------------------------------
+
+#execute custom script
+
+exs() {
+    sh ~/projects/scripts/$1
+}
+
+#---------------------------------------------------------------------------------------------------
+
+#github pull request
+
+gpr() {
+	msgCommit="$1"	
+	mdate=$(date "+%m-%d-%y_%H-%M-%S")
+	patch="patch-"$mdate	
+	git pull
+	git branch "patch-"$mdate
+	git checkout "patch-"$mdate
+	git add .
+	git commit -m "$msgCommit"
+	git push -u origin HEAD
+	gh pr create -t "$msgCommit" -b "$msgCommit"
+}
+
+#---------------------------------------------------------------------------------------------------
+
+#github merge
+
+gmerge() {
+	echo $mdate
+	echo $patch
+
+	git checkout master
+
+	#merge local branch into the master
+	git merge --no-ff -m "$msgCommit" $patch
+
+	#push changes upstream
+	git push -u origin master
+
+	#delete remote branch
+	git push origin -d $patch
+
+	#delete local branch
+	git branch -d $patch
+}
+
+#---------------------------------------------------------------------------------------------------
+
+#github local push to upstream branch / pr
+
+glpush() {
+	git add . && git commit -m "$@" && git push
+}
+
+#---------------------------------------------------------------------------------------------------
+
+#delete orphan local branches. always work on the local branch created through pull request and 
+#merge using gmerge
+
+gldel() {
+	git branch --merged |egrep -v "(^\*|master|dev)" | xargs git branch -d
+}
+
+
+#---------------------------------------------------------------------------------------------------
+
+#github direct push to master
+#should NOT be used. usr gpr,gmerge in sequence to create pull request and than merge.
+
+gpush() {
+        git add . && git commit -m "$@" && git push -u origin master
+}
+
