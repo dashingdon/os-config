@@ -66,3 +66,8 @@ displaylist()
            strcolor c ""$line" "
 	done
 }
+
+runupdate()
+{
+	sudo apt update && sudo apt -y dist-upgrade && sudo apt -y autoremove && sudo updatedb 
+}
