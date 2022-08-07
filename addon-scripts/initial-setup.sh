@@ -18,6 +18,11 @@ colorset
 
 initial-setup()
 {
+
+echo running system update
+
+runupdate()
+
 echo
 echo "following packages are necessary for minimal openbox installation. Packages are listed in " \
 "the" $PROJECTPATH/setup-files/packages.txt \
