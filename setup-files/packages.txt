@@ -20,5 +20,11 @@ ncdu
 nm-tray 
 flameshot
 openssh-server
+gh
+inxi
+locate
+lynx
+fonts-indic
+net-tools
 #dmenu
 #menu

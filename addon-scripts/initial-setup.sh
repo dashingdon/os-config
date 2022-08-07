@@ -53,7 +53,7 @@ cat >> "$PROJECTPATH"/setup-files/test.txt << EOL
 EOL
 	strcolor p  "// TODO replace test.txt with $PROJECTPATH/setup-files/.alias to $HOME/.alias TODO//"
 	cp "$PROJECTPATH"/setup-files/test.txt $HOME
-        strcolor p "//TODO with replace test.txt with $HOME/.bashrc TODO//"
+        strcolor p "//TODO source and replace test.txt with $HOME/.bashrc TODO//"
 #	source "$PROJECTPATH"/setup-files/test.txt
         strcolor g  "alias setup complete."
 fi
@@ -62,3 +62,5 @@ fi
 }
 
 #------------------------------------------------------------------------------------
+
+#export PATH="$PATH:~/projects/scripts"
