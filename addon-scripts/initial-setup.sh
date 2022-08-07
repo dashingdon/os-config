@@ -45,16 +45,16 @@ then
 else
 	strcolor y  "alias setup not found. setting up.."
 # Done	strcolor p "//TODO with replace test.txt with $HOME/.bashrc TODO//"
-cat >> "$HOME/.bashrc << EOL
+cat >> "$HOME"/.bashrc << EOL
 	# for custom alias setup
 	if [ -f ~/.alias ]; then
 	   . ~/.alias
 	fi
 EOL
 # Done	strcolor p  "// TODO replace test.txt with $PROJECTPATH/setup-files/.alias to $HOME/.alias TODO//"
-	cp "$PROJECTPATH"/setup-files/.alias $HOME
-        strcolor p "//TODO source and replace test.txt with $HOME/.bashrc TODO//"
-# Done	source $HOME/.bashrc
+	cp "$PROJECTPATH"/setup-files/.alias "$HOME"
+# Done  strcolor p "//TODO source and replace test.txt with $HOME/.bashrc TODO//"
+	source "$HOME/.bashrc"
         strcolor g  "alias setup complete."
 fi
 
