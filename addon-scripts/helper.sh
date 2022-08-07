@@ -52,7 +52,7 @@ pkgcheck()
 	        	strcolor g ""$line" is installed "
 		else
 	        	strcolor y ""$line" not found. Installing ..."
-		        sudo apt install -y $line
+		        sudo apt install -q -y $line
 		fi
 	done
 

@@ -19,6 +19,8 @@ colorset
 initial-setup()
 {
 
+export DEBIAN_FRONTEND=noninteractive
+
 strcolor g "running system update"
 echo
 
