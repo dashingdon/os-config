@@ -1,6 +1,14 @@
 #!/bin/sh
 
-#echo "functions.sh"
+checkIfDirectory() {
+    # $1 meaning first argument
+    if [ -d "$1" ];
+    then
+        echo "$1 exists"
+    else
+        mkdir $DIR
+    fi
+}
 
 # check user input
 function ask_yes_or_no() 

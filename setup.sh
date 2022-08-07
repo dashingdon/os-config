@@ -6,6 +6,7 @@ PROJECTPATH=$HOME/projects/os-config
 #add supporting function file
 . $HOME/projects/os-config/addon-scripts/helper.sh
 . $HOME/projects/os-config/addon-scripts/initial-setup.sh
+. $HOME/projects/os-config/addon-scripts/ghsetup.sh
 
 #define colorset to use for screen output.
 colorset
@@ -27,8 +28,10 @@ case $n in
 	initial-setup
 	echo
 	;;
-  2) echo "You chose Option 2";;
-  3) echo "You chose Option 3"
+  2) echo "You chose GitHub setup"
+	ghsetup
+	;;
+  3) echo "You chose system update"
 	runupdate
 	;;
   4) echo "You chose Option 4";;
