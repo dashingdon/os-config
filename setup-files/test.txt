@@ -1,0 +1,4 @@
+	# for custom alias setup
+	if [ -f ~/.alias ]; then
+	   . ~/.alias
+	fi

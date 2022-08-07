@@ -21,4 +21,4 @@ nm-tray
 flameshot
 openssh-server
 #dmenu
-#menu 
+#menu
