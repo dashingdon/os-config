@@ -47,7 +47,7 @@ pkgcheck "$PROJECTPATH"/setup-files/packages.txt
 # alias check and setup
 
 echo
-if grep -Fxq "$ALIASFUNCTION" "$PROJECTPATH"/setup-files/test.txt
+if grep -Fxq "$ALIASFUNCTION" "$HOME"/.bashrc 
 then
 	strcolor g  "alias setup already available. existing.."
 else
