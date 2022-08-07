@@ -22,7 +22,7 @@ initial-setup()
 strcolor g "running system update"
 echo
 
-runupdate()
+runupdate
 
 echo
 echo "following packages are necessary for minimal openbox installation. Packages are listed in " \
