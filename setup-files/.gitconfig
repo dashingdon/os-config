@@ -1,0 +1,8 @@
+[color]
+	ui = auto
+
+[core]
+	excludesfile = ~/.gitignore
+[user]
+	name = Tech User
+	email = Tech User
