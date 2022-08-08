@@ -40,4 +40,11 @@ ghsetup()
 	ssh -T git@github.com
 	echo
 	cp $PROJECTPATH/setup-files/.gitconfig $HOME
+	echo
+	echo "Generate your personal access token for github api --> https://github.com/settings/tokens"
+	echo "copy and save it in the safe place. Token will need in the next step."
+	echo "follow the instructions to authenticate yourself through github API"
+	echo
+	gh auth login
+	echo
 }
