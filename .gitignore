@@ -49,7 +49,7 @@ Thumbs.db
 ######################
 *.jpg
 *.gif
-*.png
+#*.png
 *.svg
 *.ico
 
