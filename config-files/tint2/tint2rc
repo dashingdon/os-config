@@ -140,7 +140,7 @@ task_icon = 1
 task_centered = 1
 urgent_nb_of_blink = 20
 task_maximum_size = 25 30
-task_padding = 0 0 0
+task_padding = 0 2 0
 task_font = Sans 8
 task_tooltip = 1
 task_thumbnail = 0
@@ -158,17 +158,17 @@ mouse_scroll_down = iconify
 
 #-------------------------------------
 # System tray (notification area)
-systray_padding = 4 2 3
+systray_padding = 4 2 2
 systray_background_id = 0
 systray_sort = right2left
 systray_icon_size = 0
-systray_icon_asb = 100 100 100
+systray_icon_asb = 100 0 100
 systray_monitor = 1
 systray_name_filter = 
 
 #-------------------------------------
 # Launcher
-launcher_padding = 2 4 2
+launcher_padding = 2 4 3
 launcher_background_id = 0
 launcher_icon_background_id = 0
 launcher_icon_size = 20
@@ -184,7 +184,7 @@ launcher_item_app = /usr/share/applications/firefox.desktop
 
 #-------------------------------------
 # Clock
-time1_format = %A %d %B | %r
+time1_format = | %a %d %b | %r |
 time2_format = 
 time1_font = Sans Italic 8
 time1_timezone = 
