@@ -7,6 +7,13 @@ build-essential
 obconf 
 nitrogen 
 tint2 
+bwm-ng
+hexchat
+hexchat-plugins
+isenkram
+senkram-cli
+xserver-xorg-input-synaptics
+speedtest-cli
 suckless-tools
 lxappearance 
 synaptic 
