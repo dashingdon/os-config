@@ -6,10 +6,13 @@ dkms
 build-essential
 obconf 
 nitrogen 
+# tint2 tray applet
 tint2 
 bwm-ng
+# irc client
 hexchat
 hexchat-plugins
+# firmware auto deiscovery and update
 isenkram
 senkram-cli
 xserver-xorg-input-synaptics
@@ -29,9 +32,14 @@ flameshot
 openssh-server
 gh
 inxi
-locate
+plocate
 lynx
 fonts-indic
 net-tools
+python-is-python3
+# passwords and key management
+seahorse
+# send any app to tray
+kdocker
 #dmenu
 #menu
