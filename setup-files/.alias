@@ -1,4 +1,5 @@
 #include in the home directory
+# if using nano to edit, ALT+6 to copy, CTRL+U to paste
 
 alias sudo='sudo '
 alias agsu='sudo apt -y dist-upgrade'
@@ -10,9 +11,12 @@ alias agr='sudo apt remove'
 alias clnlst='sudo rm -rf /var/lib/apt/lists/*'
 alias sysinfo="sudo inxi -Fxz"
 alias p='python3.7 '
-alias jup='sudo jupyter notebook --ip="127.0.0.1" --port=8888 --no-browser --allow-root'
 alias p37="sudo python3.7 -m pip install "
 alias mine="cat ~/.mine"
+alias vdl='yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b" '
+alias gin='git pull && gh auth status && git status'
+alias hc='sudo -E hardcode-tray'
+alias og='~/projects/obmenu-generator/obmenu-generator -p -i -c -u -d'
 
 # surfshark quick commands
 alias vup="sudo surfshark-vpn"
@@ -23,16 +27,15 @@ alias pissh='ssh $USER@$IP'
 alias ll='ls -la'
 alias renew='sudo dhclient -r wlp3s0 && sudo dhclient wlp3s0'
 alias hgrep='history | grep '
-alias proc='ps aux | grep'
-alias logout='sudo pkill -kill -u'
-alias ips='nmap -sP 192.168.0.1-254'
+alias proc='ps aux | grep '
+alias ips='nmap --top-ports 40 192.168.1.1-254'
 alias tcaps='bind "set completion-ignore-case on" >>~/.inputrc'
 alias reb='sudo "$BASH" -c "reboot"'
-alias ports='sudo lsof -Pan -i tcp -i udp'
+alias localports='sudo lsof -Pan -i tcp -i udp'
 alias shd='sudo "$BASH" -c "shutdown -h now"'
 alias td='sudo ntpdate us.pool.ntp.org'
 alias ctz='sudo dpkg-reconfigure tzdata'
-alias ipadd='curl -4 ifconfig.k0nsl.org && curl -6 ifconfig.k0nsl.org'
+alias ipadd='dig TXT +short o-o.myaddr.l.google.com @ns1.google.com'
 alias bth='sudo bluetoothd'
 alias tgain='mp3gain -r -c -o -q -d 9.0 *.mp3'
 alias again='mp3gain -a -c -o -q -d 9.0 *.mp3' 
@@ -41,10 +44,34 @@ alias trace="sudo traceroute -I "
 alias jpt='jupyter notebook --ip=127.0.0.1 --port=8888'
 alias installed='sudo apt list --installed'
 alias gitkey=`ssh-add ~/.ssh/id_rsa_github`
-alias lserver='python -m SimpleHTTPServer 8081'
+alias gitreset='git reset --hard HEAD'
+alias lserver='python -m http.server 8081'
+#alias jup='sudo jupyter notebook --ip="127.0.0.1" --port=8888 --no-browser --allow-root'
+#alias logout='sudo pkill -kill -u'
+#alias vbsf='sudo adduser $1 vboxsf'
+#alias rgui='rclone rcd --rc-web-gui'
+#alias brave_fix='sudo sysctl -w kernel.unprivileged_userns_clone=1'
+#alias bth='sudo /etc/init.d/bluetooth start'
+#alias n="sudo nano "
+
 
 #use apt-file to search the missing package 
 alias afs="sudo apt-file search "
+
+#display settings
+
+alias one="xrandr --output DVI-I-1-1 --off"
+alias two="xrandr --setprovideroutputsource 1 0 && xrandr --setprovideroutputsource 2 0 && xrandr --output LVDS-1 --primary --auto --mode 1600x900 && xrandr --output DVI-I-1-1 --mode 1600x1200 --right-of LVDS-1"
+
+#Nik Collection
+alias v2='/usr/share/playonlinux/playonlinux --run "Viveza 2" '
+alias d2='/usr/share/playonlinux/playonlinux --run "Dfine2" '
+alias sep2='/usr/share/playonlinux/playonlinux --run "Silver Efex Pro 2" '
+alias aep2='/usr/share/playonlinux/playonlinux --run "Analog Efex Pro 2" '
+alias cep4='/usr/share/playonlinux/playonlinux --run "Color Efex Pro 4" '
+alias shp='/usr/share/playonlinux/playonlinux --run "SHP3OS" '
+alias hdr='/usr/share/playonlinux/playonlinux --run "HDR Efex Pro 2" '
+alias nodeclean='sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}'
 
 #---------------------------------------------------------------------------------------------------
 
@@ -76,13 +103,15 @@ gpr() {
 #github merge
 
 gmerge() {
-	echo $mdate
+#	echo $mdate
+#	echo $patch
+	patch=$(git rev-parse --abbrev-ref HEAD)
 	echo $patch
 
 	git checkout master
 
 	#merge local branch into the master
-	git merge --no-ff -m "$msgCommit" $patch
+	git merge --no-ff -m "merging $patch" $patch
 
 	#push changes upstream
 	git push -u origin master
@@ -108,7 +137,7 @@ glpush() {
 #merge using gmerge
 
 gldel() {
-	git branch --merged |egrep -v "(^\*|master|dev)" | xargs git branch -d
+	git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d
 }
 
 
@@ -117,7 +146,42 @@ gldel() {
 #github direct push to master
 #should NOT be used. usr gpr,gmerge in sequence to create pull request and than merge.
 
-gpush() {
+gserpush() {
         git add . && git commit -m "$@" && git push -u origin master
 }
 
+#---------------------------------------------------------------------------------------------------
+
+portkill() {
+	running=$(lsof -t -i:$1)
+
+	if [ "${running:-empty}" != empty ]
+	then
+#		echo $running
+#		echo "${running:-empty}"
+		kill -9 $(lsof -t -i:$1)
+		echo "closed running application on port $1"
+	else
+		echo "no running application found at $1"
+	fi
+}
+
+#---------------------------------------------------------------------------------------------------
+
+setremote() {
+
+reponame="$1"
+echo git remote set-url origin git@github.com:dashingdon/$reponame.git
+
+}
+
+#---------------------------------------------------------------------------------------------------
+
+pd() {
+	mdirname=$1
+	cd $HOME/projects/$mdirname
+	gin
+	ll
+}
+
+#---------------------------------------------------------------------------------------------------
