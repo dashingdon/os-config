@@ -72,7 +72,7 @@ border_color_pressed = #000000 100
 
 #-------------------------------------
 # Panel
-panel_items = :L:T:B:C:E:E:E:S:PPP:
+panel_items = :L:T:S:B:C:E:E:PPP:
 panel_size = 100% 20
 panel_margin = 0 0
 panel_padding = 0 0 0
@@ -299,15 +299,6 @@ separator_size = 5
 separator_padding = 1 0
 
 #-------------------------------------
-# Separator 11
-separator = new
-separator_background_id = 0
-separator_color = #7e6b4e 86
-separator_style = empty
-separator_size = 5
-separator_padding = 1 0
-
-#-------------------------------------
 # Executor 1
 execp = new
 execp_command = hostname -I
@@ -318,7 +309,7 @@ execp_continuous = 1
 execp_markup = 1
 execp_monitor = all
 execp_lclick_command =
-execp_rclick_command = curl api.ipify.org
+execp_rclick_command = 
 execp_mclick_command = 
 execp_uwheel_command = 
 execp_dwheel_command = 
@@ -340,29 +331,6 @@ execp_font = Sans Italic 8
 execp_markup = 1
 execp_font_color = #deddda 100
 execp_padding = 2 0
-
-# Executor 3
-execp = new
-execp_command = weather -nq --headers="temperature" --imperial 94582
-#execp_command = ~/.config/tint2/tint2_weather.sh
-execp_interval = 1800
-execp_has_icon = 0
-execp_cache_icon = 0
-execp_continuous = 0
-execp_markup = 0
-execp_monitor = all
-execp_lclick_command = 
-execp_rclick_command = 
-execp_mclick_command =
-execp_uwheel_command = weather -a --atypes="urgent_weather_message" -fnq --headers="temperature" 94582
-execp_dwheel_command =
-execp_font_color = #deddda 100
-execp_font = Sans Italic 8
-execp_padding = 2 0
-execp_background_id = -1
-execp_centered = 0
-execp_icon_w = 0
-execp_icon_h = 0
 
 #-------------------------------------
 # Button 1
