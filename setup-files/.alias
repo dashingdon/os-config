@@ -1,4 +1,4 @@
-#include in the home directory
+# include in the home directory
 # if using nano to edit, ALT+6 to copy, CTRL+U to paste
 
 alias sudo='sudo '
@@ -17,6 +17,8 @@ alias vdl='yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b" '
 alias gin='git pull && gh auth status && git status'
 alias hc='sudo -E hardcode-tray'
 alias og='~/projects/obmenu-generator/obmenu-generator -p -i -c -u -d'
+alias cdiff="colordiff -syw "
+alias pl='plocate '
 
 # surfshark quick commands
 alias vup="sudo surfshark-vpn"
