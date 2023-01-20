@@ -6,6 +6,10 @@ dkms
 build-essential
 obconf 
 nitrogen 
+feh
+conky
+yad
+font-manager
 # tint2 tray applet
 tint2 
 bwm-ng
@@ -19,7 +23,7 @@ xserver-xorg-input-synaptics
 speedtest-cli
 suckless-tools
 lxappearance 
-synaptic 
+#synaptic 
 gnome-backgrounds 
 mate-backgrounds 
 pcmanfm 
@@ -43,3 +47,6 @@ seahorse
 kdocker
 #dmenu
 #menu
+#
+# from antix
+lxtask
