@@ -50,3 +50,9 @@ kdocker
 #
 # from antix
 lxtask
+#cli tools
+bat
+ripgrep
+exa
+zoxide
+broot
