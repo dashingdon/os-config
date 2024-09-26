@@ -2,23 +2,49 @@
 # if using nano to edit, ALT+6 to copy, CTRL+U to paste
 
 alias sudo='sudo '
+alias m='micro '
+alias ff='fastfetch'
+alias ze='zellij '
+
+#bwcli password login fix
+alias kc='keyctl link @u @s'
+
+#distrobox start
+alias dbu='distrobox-upgrade --all'
+alias dbe='distrobox-export --app '
+alias dbr='distrobox-export -d --app '
+alias de='distrobox enter '
+#distrobox end
+
 alias agsu='sudo apt -y dist-upgrade'
 alias agu='sudo apt update'
+alias alu='apt list --upgradable'
 alias agi='sudo apt install '
 alias udb='sudo updatedb'
 alias ags='sudo apt search '
 alias agr='sudo apt remove'
 alias clnlst='sudo rm -rf /var/lib/apt/lists/*'
 alias sysinfo="sudo inxi -Fxz"
+alias cdot='dotsync ~/projects/scripts/data-files/list_of_files.txt ~/projects/scripts/dot-files'
+#alias cfiles='copydot ~/projects/scripts/data-files/list_of_files.txt ~/projects/scripts/dot-files/'
+
+#python start
 alias p='python3.7 '
-alias p37="sudo python3.7 -m pip install "
+alias pon="python -m pip install "
+alias pyd="deactivate"
+alias uv="uvicorn data.fi_fastapi:app --reload --port 9025"
+# python end
+
 alias mine="cat ~/.mine"
-alias vdl='yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b" '
 alias gin='git pull && gh auth status && git status'
 alias hc='sudo -E hardcode-tray'
 alias og='~/projects/obmenu-generator/obmenu-generator -p -i -c -u -d'
 alias cdiff="colordiff -syw "
 alias pl='plocate '
+alias pg='pdfgrep -irnH '
+alias yt='ytfzf -f '
+alias cal='sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin'
+alias vbextpack='sudo VBoxManage extpack install --replace '
 
 # surfshark quick commands
 alias vup="sudo surfshark-vpn"
@@ -26,7 +52,9 @@ alias vstat="sudo surfshark-vpn status"
 alias vdn="sudo surfshark-vpn down"
 
 alias pissh='ssh $USER@$IP'
-alias ll='ls -la'
+#alias ll='ls -la --block-size=K '
+alias ll='lsd -1lah '
+#alias d='ddgr '
 alias renew='sudo dhclient -r wlp3s0 && sudo dhclient wlp3s0'
 alias hgrep='history | grep '
 alias proc='ps aux | grep '
@@ -43,11 +71,13 @@ alias tgain='mp3gain -r -c -o -q -d 9.0 *.mp3'
 alias again='mp3gain -a -c -o -q -d 9.0 *.mp3' 
 alias flushdns='sudo systemd-resolve --flush-caches'
 alias trace="sudo traceroute -I "
-alias jpt='jupyter notebook --ip=127.0.0.1 --port=8888'
 alias installed='sudo apt list --installed'
 alias gitkey=`ssh-add ~/.ssh/id_rsa_github`
 alias gitreset='git reset --hard HEAD'
 alias lserver='python -m http.server 8081'
+alias goweb='sudo gopro webcam -p enx -n -a'
+alias bk='batcat -p --wrap auto '
+
 #alias jup='sudo jupyter notebook --ip="127.0.0.1" --port=8888 --no-browser --allow-root'
 #alias logout='sudo pkill -kill -u'
 #alias vbsf='sudo adduser $1 vboxsf'
@@ -55,6 +85,10 @@ alias lserver='python -m http.server 8081'
 #alias brave_fix='sudo sysctl -w kernel.unprivileged_userns_clone=1'
 #alias bth='sudo /etc/init.d/bluetooth start'
 #alias n="sudo nano "
+#alias ytv=`yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]" `
+#alias vdl='yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b" '
+#alias vdl='yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b" '
+#alias jpt='jupyter notebook --ip=127.0.0.1 --port=8888'
 
 
 #use apt-file to search the missing package 
@@ -73,7 +107,10 @@ alias aep2='/usr/share/playonlinux/playonlinux --run "Analog Efex Pro 2" '
 alias cep4='/usr/share/playonlinux/playonlinux --run "Color Efex Pro 4" '
 alias shp='/usr/share/playonlinux/playonlinux --run "SHP3OS" '
 alias hdr='/usr/share/playonlinux/playonlinux --run "HDR Efex Pro 2" '
-alias nodeclean='sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}'
+alias nodeclean='sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share} '
+
+# arch specific
+alias akf='sudo pacman -Sy archlinux-keyring && sudo pacman -Syu'
 
 #---------------------------------------------------------------------------------------------------
 
@@ -172,8 +209,8 @@ portkill() {
 
 setremote() {
 
-reponame="$1"
-echo git remote set-url origin git@github.com:dashingdon/$reponame.git
+	reponame="$1"
+	echo git remote set-url origin git@github.com:dashingdon/$reponame.git
 
 }
 
@@ -187,3 +224,73 @@ pd() {
 }
 
 #---------------------------------------------------------------------------------------------------
+
+sfix() {
+	eval $(ssh-agent -s) 
+	ssh-add $HOME/.ssh/id_rsa_github
+}
+
+#--------------------------------------------------------------------------------------------------
+
+bgr() {
+
+	filename=$1
+	#echo "${filename%%.*}"
+	file="${filename%%.*}"
+	#echo $file-bgr.png
+	backgroundremover -i $filename -m "u2net_human_seg" -o "$file-bgr.png"
+}
+
+#--------------------------------------------------------------------------------------------------
+
+#qf() {
+#	sudo updatedb
+#	pl -i $1
+#}
+
+
+#--------------------------------------------------------------------------------------------------
+
+penv() {
+	# create python virtual env
+	python -m venv venv
+	source venv/bin/activate
+}
+
+#--------------------------------------------------------------------------------------------------
+
+imnt() {
+	cd /mnt/
+	sudo mount -t cifs -o credentials=~/.creds //192.168.1.187/Pictures /mnt/images
+	cd ./images/
+	echo "images mounted. rememeber to unmount using iumnt"
+}
+
+#--------------------------------------------------------------------------------------------------
+
+iumnt() {
+	cd /mnt/
+	sudo umount -t cifs ./images
+	cd /
+}
+
+#--------------------------------------------------------------------------------------------------
+
+qf() {
+
+    local extension="$1"
+    local term="$2"
+    
+    if [ -n "$term" ]; then
+        pl -i "${extension}" | rg "${term}" | fzf --exact
+    else
+        pl -i "${extension}" | fzf --exact
+    fi
+
+#    find / -type f -name "*.${extension}" -exec rg -Siwp "${term}" {} + 2>/dev/null | fzf
+#	pl -r "${term}" | rg -ie "\b${extension}" | fzf --exact
+#	pl -ier "${extension}" | fzf --exact
+#	pl "${extension}" | rg "${term}" | fzf --exact
+}
+
+#--------------------------------------------------------------------------------------------------
