@@ -42,7 +42,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>Onyx-Citrus</name>
+    <name>Dragon</name>
     <titleLayout>NLIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -57,57 +57,57 @@
     <keepBorder>yes</keepBorder>
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
-      <name>sans</name>
+      <name>Noto Sans Buginese</name>
       <size>8</size>
       <!-- font size in points -->
-      <weight>bold</weight>
+      <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
-      <slant>normal</slant>
+      <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveWindow">
-      <name>sans</name>
+      <name>Noto Sans Buginese</name>
       <size>8</size>
       <!-- font size in points -->
-      <weight>bold</weight>
+      <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
-      <slant>normal</slant>
+      <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="MenuHeader">
-      <name>sans</name>
-      <size>9</size>
+      <name>Noto Sans</name>
+      <size>8</size>
       <!-- font size in points -->
-      <weight>normal</weight>
+      <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
-      <slant>normal</slant>
+      <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="MenuItem">
-      <name>sans</name>
-      <size>9</size>
+      <name>Noto Sans</name>
+      <size>8</size>
       <!-- font size in points -->
-      <weight>normal</weight>
+      <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
-      <slant>normal</slant>
+      <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="ActiveOnScreenDisplay">
-      <name>sans</name>
-      <size>9</size>
+      <name>Noto Sans Buginese</name>
+      <size>8</size>
       <!-- font size in points -->
-      <weight>bold</weight>
+      <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
-      <slant>normal</slant>
+      <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveOnScreenDisplay">
-      <name>sans</name>
-      <size>9</size>
+      <name>Noto Sans Buginese</name>
+      <size>8</size>
       <!-- font size in points -->
-      <weight>bold</weight>
+      <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
-      <slant>normal</slant>
+      <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
   </theme>
@@ -264,6 +264,11 @@
         <menu>client-menu</menu>
       </action>
     </keybind>
+     <keybind key="W-Tab">
+       <action name="ShowMenu">
+         <menu>root-menu</menu>
+       </action>
+     </keybind>
     <!-- Take a screenshot of the current window with scrot when Alt+Print are pressed -->
     <keybind key="A-Print">
       <action name="Execute">
@@ -306,6 +311,15 @@
           <name>dmenu-bind</name>
         </startupnotify>
         <command>dmenu_run</command>
+      </action>
+    </keybind>
+    <keybind key="A-F2">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>false</enabled>
+          <name>dmenu-bind</name>
+        </startupnotify>
+        <command>gmrun</command>
       </action>
     </keybind>
     <!-- Keybindings for window switching -->
@@ -394,6 +408,22 @@
     <keybind key="W-A-Right">
       <action name="UnmaximizeFull"/>
       <action name="MaximizeVert"/>
+      <action name="MoveResizeTo">
+        <width>50%</width>
+        <x>-0</x>
+        <y>0</y>
+      </action>
+    </keybind>
+    <keybind key="W-A-Down">
+      <action name="Unmaximize"/>
+      <action name="MoveResizeTo">
+        <width>50%</width>
+        <x>-0</x>
+        <y>0</y>
+      </action>
+    </keybind>
+    <keybind key="W-A-Up">
+      <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <width>50%</width>
         <x>-0</x>
